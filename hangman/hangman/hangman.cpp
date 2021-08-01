@@ -3,15 +3,15 @@
 
 #include <iostream>
 #include <string>
-//change
+//uncovers all * which are the same character as the guess and returns true if that happened at least once
 bool hangman_checkguess(std::string &word, std::string &display, char guess, int &characters_remaining) {
     bool correct_guess = false;
-    for (int i = 0; i<word.length(); i++) {
+    for (int i = 0; i<word.length(); i++) {     //loop through each character of the word and check if it's the same as guess
         if (guess == word[i]) {
             if (word[i] != display[i]) {
                 display[i] = word[i];
                 correct_guess = true;
-                characters_remaining--;
+                characters_remaining--; 
             }
         }
     }
@@ -56,9 +56,6 @@ void hangman(std::string word) {
     }
     
     std::cout << "The word was : " << word << "\n";
-
-    
-    
 }
 
 int main()
@@ -66,11 +63,8 @@ int main()
     std::string word;
     std::cout << "Hello World\n";
     while (true) {
-        std::cout << "PLay hangman with word: ";
+        std::cout << "Play hangman with word: ";
         std::cin >> word;
         hangman(word);
     }
 }
-
-
-
