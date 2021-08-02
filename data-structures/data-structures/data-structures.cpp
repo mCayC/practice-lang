@@ -36,6 +36,7 @@ void linkedlist_delete(node* list, char value) {
             std::cout << "deleted : " << value << "\n";
             return;
         }
+        list = list->next;
     }
     std::cout << "Node to delete not found\n";
 }
@@ -50,8 +51,14 @@ int main()
     linkedlist_add(head, 'B');
     linkedlist_add(head, 'C');
     linkedlist_add(head, 'D');
+    linkedlist_add(head, 'E');
+    linkedlist_add(head, 'F');
+    linkedlist_add(head, 'G');
+    linkedlist_add(head, 'H');
+    linkedlist_add(head, 'I');
     
     linkedlist_delete(head, 'B');
+    linkedlist_delete(head, 'D');
     linkedlist_traverse(head);
 }
 
