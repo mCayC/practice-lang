@@ -10,7 +10,7 @@ struct node {
 //Traverse through each node
 void linkedlist_traverse(node* node) {
     while (node != NULL) {
-        std::cout << node->value << " -> ";
+        std::cout << node->value << " -> "; //ey i learned what the "->" means. It's basically like the . in c# to access members, but because it's a pointer -> automatically gets the value from the pointer.
         node = node->next;
     }
 }
@@ -28,9 +28,21 @@ void linkedlist_add(node* list, char n) {
     list->next = new_node;
 }
 
+//removes the node 
+void linkedlist_delete(node* list, char value) {
+    while (list != NULL && list->next != NULL) {
+        if (list->next->value == value) {
+            list->next = list->next->next;
+            std::cout << "deleted : " << value << "\n";
+            return;
+        }
+    }
+    std::cout << "Node to delete not found\n";
+}
 
 int main()
-{
+{   
+    //init head
     node* head = new node;
     head->value = 'A';
     head->next = NULL;
@@ -39,6 +51,7 @@ int main()
     linkedlist_add(head, 'C');
     linkedlist_add(head, 'D');
     
+    linkedlist_delete(head, 'B');
     linkedlist_traverse(head);
 }
 
