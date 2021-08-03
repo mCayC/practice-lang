@@ -6,40 +6,41 @@
 struct node {
     char value;
     node* next;
-};
-//Traverse through each node
-void linkedlist_traverse(node* node) {
-    while (node != NULL) {
-        std::cout << node->value << " -> "; //ey i learned what the "->" means. It's basically like the . in c# to access members, but because it's a pointer -> automatically gets the value from the pointer.
-        node = node->next;
-    }
-}
 
-void linkedlist_add(node* list, char n) {
-    if(list)
-    while (list != NULL && list->next != NULL) {
-        list = list->next;
-    }
-    //init new node
-    node* new_node = new node;
-    new_node->value = n;
-    new_node->next = NULL;
-
-    list->next = new_node;
-}
-
-//removes the node 
-void linkedlist_delete(node* list, char value) {
-    while (list != NULL && list->next != NULL) {
-        if (list->next->value == value) {
-            list->next = list->next->next;
-            std::cout << "deleted : " << value << "\n";
-            return;
+    void traverse(node* node) {
+        while (node != NULL) {
+            std::cout << node->value << " -> "; //ey i learned what the "->" means. It's basically like the . in c# to access members, but because it's a pointer -> automatically gets the value from the pointer.
+            node = node->next;
         }
-        list = list->next;
     }
-    std::cout << "Node to delete not found\n";
-}
+
+    //Traverse through each node
+    void add(node* list, char n) {
+        if (list)
+            while (list != NULL && list->next != NULL) {
+                list = list->next;
+            }
+        //init new node
+        node* new_node = new node;
+        new_node->value = n;
+        new_node->next = NULL;
+
+        list->next = new_node;
+    }
+
+    //removes the node 
+    void remove(node* list, char value) {
+        while (list != NULL && list->next != NULL) {
+            if (list->next->value == value) {
+                list->next = list->next->next;
+                std::cout << "deleted : " << value << "\n";
+                return;
+            }
+            list = list->next;
+        }
+        std::cout << "Node to delete not found\n";
+    }
+};
 
 int main()
 {   
@@ -48,18 +49,13 @@ int main()
     head->value = 'A';
     head->next = NULL;
 
-    linkedlist_add(head, 'B');
-    linkedlist_add(head, 'C');
-    linkedlist_add(head, 'D');
-    linkedlist_add(head, 'E');
-    linkedlist_add(head, 'F');
-    linkedlist_add(head, 'G');
-    linkedlist_add(head, 'H');
-    linkedlist_add(head, 'I');
+    head->add(head, 'B');
+    head->add(head, 'C');
+    head->add(head, 'D');
+    head->add(head, 'E');
     
-    linkedlist_delete(head, 'B');
-    linkedlist_delete(head, 'D');
-    linkedlist_traverse(head);
+    head->remove(head, 'I');
+    head->traverse(head);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
