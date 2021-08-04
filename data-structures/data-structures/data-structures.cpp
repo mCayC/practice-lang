@@ -1,7 +1,7 @@
 // data-structures.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 #include <iostream>
-
+#include "datastructures.h"
 //Linked list
 struct node {
     char value;
@@ -21,7 +21,7 @@ struct node {
                 list = list->next;
             }
         //init new node
-        node* new_node = new node;
+        node* new_node = (node*)malloc(sizeof(node));
         new_node->value = n;
         new_node->next = NULL;
 
@@ -32,7 +32,10 @@ struct node {
     void remove(node* list, char value) {
         while (list != NULL && list->next != NULL) {
             if (list->next->value == value) {
+                node* ptr = list->next;
                 list->next = list->next->next;
+                free(ptr->next);
+                free(ptr);
                 std::cout << "deleted : " << value << "\n";
                 return;
             }
@@ -42,20 +45,22 @@ struct node {
     }
 };
 
-int main()
-{   
+void create_list() {
     //init head
-    node* head = new node;
+    node* head = (node*)malloc(sizeof(node));
     head->value = 'A';
     head->next = NULL;
 
-    head->add(head, 'B');
-    head->add(head, 'C');
-    head->add(head, 'D');
-    head->add(head, 'E');
+    //head->add(head, 'B');
     
-    head->remove(head, 'I');
+
+    head->remove(head, 'C');
     head->traverse(head);
+}
+int main()
+{   
+    testfunc();
+    return 1;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
