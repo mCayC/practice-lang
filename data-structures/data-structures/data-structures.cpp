@@ -34,14 +34,23 @@ struct node {
             if (list->next->value == value) {
                 node* ptr = list->next;
                 list->next = list->next->next;
-                free(ptr->next);
+                //free(ptr->next);
                 free(ptr);
+                ptr = NULL;
                 std::cout << "deleted : " << value << "\n";
                 return;
             }
             list = list->next;
         }
         std::cout << "Node to delete not found\n";
+    }
+    void destroy(node* n) { //Destroy all nodes
+        while (n != NULL) {
+            node* n_next = n->next;
+            n = NULL;
+            free(n);
+            
+        }
     }
 };
 
@@ -56,10 +65,14 @@ void create_list() {
 
     head->remove(head, 'C');
     head->traverse(head);
+    head->destroy(head);
+    std::cout << std::endl;
 }
 int main()
 {   
-    testfunc();
+    create_list();
+    BST* tree = new BST(3);
+    tree->Destroy();
     return 1;
 }
 
