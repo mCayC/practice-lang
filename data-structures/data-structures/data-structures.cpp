@@ -31,7 +31,7 @@ struct node {
     //removes the node 
     void remove(node* list, char value) {
         while (list != NULL && list->next != NULL) {
-            if (list->next->value == value) {
+            if (list->next->value == value) { //current node->value = value to remove
                 node* ptr = list->next;
                 list->next = list->next->next;
                 //free(ptr->next);
@@ -47,9 +47,9 @@ struct node {
     void destroy(node* n) { //Destroy all nodes
         while (n != NULL) {
             node* n_next = n->next;
-            n = NULL;
             free(n);
-            
+            n = NULL;
+            n = n_next; //resume destruction with the next node
         }
     }
 };
@@ -70,7 +70,7 @@ void create_list() {
 }
 int main()
 {   
-    create_list();
+    //create_list();
     BST* tree = new BST(3);
     tree->Destroy();
     return 1;

@@ -102,7 +102,7 @@ public:
 
 		free(node);
 		node = NULL;
-		if (this->root != nullptr) {
+		if (this->root != nullptr) { //root doesn't become NULL on windows visual studio so i do it manually here.
 			this->root = nullptr;
 		}
 	}
